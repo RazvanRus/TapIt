@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2919140F1EC087EE0063E45D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919140E1EC087EE0063E45D /* AppDelegate.swift */; };
+		291914111EC087EE0063E45D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 291914101EC087EE0063E45D /* GameScene.sks */; };
+		291914131EC087EE0063E45D /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 291914121EC087EE0063E45D /* Actions.sks */; };
+		291914151EC087EE0063E45D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291914141EC087EE0063E45D /* GameScene.swift */; };
+		291914171EC087EE0063E45D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291914161EC087EE0063E45D /* GameViewController.swift */; };
+		2919141A1EC087EE0063E45D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 291914181EC087EE0063E45D /* Main.storyboard */; };
+		2919141C1EC087EE0063E45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2919141B1EC087EE0063E45D /* Assets.xcassets */; };
+		2919141F1EC087EE0063E45D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2919141D1EC087EE0063E45D /* LaunchScreen.storyboard */; };
+		2919142A1EC087EE0063E45D /* TapItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291914291EC087EE0063E45D /* TapItTests.swift */; };
+		291914351EC087EE0063E45D /* TapItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291914341EC087EE0063E45D /* TapItUITests.swift */; };
+		291914461EC088690063E45D /* GameplayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 291914451EC088690063E45D /* GameplayScene.sks */; };
+		291914481EC0887C0063E45D /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291914471EC0887C0063E45D /* GameplayScene.swift */; };
+		2919144B1EC089450063E45D /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919144A1EC089450063E45D /* Cube.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		291914261EC087EE0063E45D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 291914031EC087EE0063E45D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2919140A1EC087EE0063E45D;
+			remoteInfo = TapIt;
+		};
+		291914311EC087EE0063E45D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 291914031EC087EE0063E45D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2919140A1EC087EE0063E45D;
+			remoteInfo = TapIt;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2919140B1EC087EE0063E45D /* TapIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2919140E1EC087EE0063E45D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		291914101EC087EE0063E45D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		291914121EC087EE0063E45D /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		291914141EC087EE0063E45D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		291914161EC087EE0063E45D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		291914191EC087EE0063E45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2919141B1EC087EE0063E45D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2919141E1EC087EE0063E45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		291914201EC087EE0063E45D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		291914251EC087EE0063E45D /* TapItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		291914291EC087EE0063E45D /* TapItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapItTests.swift; sourceTree = "<group>"; };
+		2919142B1EC087EE0063E45D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		291914301EC087EE0063E45D /* TapItUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapItUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		291914341EC087EE0063E45D /* TapItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapItUITests.swift; sourceTree = "<group>"; };
+		291914361EC087EE0063E45D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		291914451EC088690063E45D /* GameplayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameplayScene.sks; sourceTree = "<group>"; };
+		291914471EC0887C0063E45D /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayScene.swift; sourceTree = "<group>"; };
+		2919144A1EC089450063E45D /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		291914081EC087EE0063E45D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		291914221EC087EE0063E45D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2919142D1EC087EE0063E45D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		291914021EC087EE0063E45D = {
+			isa = PBXGroup;
+			children = (
+				2919140D1EC087EE0063E45D /* TapIt */,
+				291914431EC088220063E45D /* Classes */,
+				291914421EC0881A0063E45D /* Scenes */,
+				291914281EC087EE0063E45D /* TapItTests */,
+				291914331EC087EE0063E45D /* TapItUITests */,
+				2919140C1EC087EE0063E45D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2919140C1EC087EE0063E45D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2919140B1EC087EE0063E45D /* TapIt.app */,
+				291914251EC087EE0063E45D /* TapItTests.xctest */,
+				291914301EC087EE0063E45D /* TapItUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2919140D1EC087EE0063E45D /* TapIt */ = {
+			isa = PBXGroup;
+			children = (
+				2919140E1EC087EE0063E45D /* AppDelegate.swift */,
+				291914101EC087EE0063E45D /* GameScene.sks */,
+				291914121EC087EE0063E45D /* Actions.sks */,
+				291914141EC087EE0063E45D /* GameScene.swift */,
+				291914161EC087EE0063E45D /* GameViewController.swift */,
+				291914181EC087EE0063E45D /* Main.storyboard */,
+				2919141B1EC087EE0063E45D /* Assets.xcassets */,
+				2919141D1EC087EE0063E45D /* LaunchScreen.storyboard */,
+				291914201EC087EE0063E45D /* Info.plist */,
+			);
+			path = TapIt;
+			sourceTree = "<group>";
+		};
+		291914281EC087EE0063E45D /* TapItTests */ = {
+			isa = PBXGroup;
+			children = (
+				291914291EC087EE0063E45D /* TapItTests.swift */,
+				2919142B1EC087EE0063E45D /* Info.plist */,
+			);
+			path = TapItTests;
+			sourceTree = "<group>";
+		};
+		291914331EC087EE0063E45D /* TapItUITests */ = {
+			isa = PBXGroup;
+			children = (
+				291914341EC087EE0063E45D /* TapItUITests.swift */,
+				291914361EC087EE0063E45D /* Info.plist */,
+			);
+			path = TapItUITests;
+			sourceTree = "<group>";
+		};
+		291914421EC0881A0063E45D /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				291914451EC088690063E45D /* GameplayScene.sks */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		291914431EC088220063E45D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				291914491EC089370063E45D /* Cube */,
+				291914441EC0882D0063E45D /* SceneClass */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		291914441EC0882D0063E45D /* SceneClass */ = {
+			isa = PBXGroup;
+			children = (
+				291914471EC0887C0063E45D /* GameplayScene.swift */,
+			);
+			name = SceneClass;
+			sourceTree = "<group>";
+		};
+		291914491EC089370063E45D /* Cube */ = {
+			isa = PBXGroup;
+			children = (
+				2919144A1EC089450063E45D /* Cube.swift */,
+			);
+			name = Cube;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2919140A1EC087EE0063E45D /* TapIt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 291914391EC087EE0063E45D /* Build configuration list for PBXNativeTarget "TapIt" */;
+			buildPhases = (
+				291914071EC087EE0063E45D /* Sources */,
+				291914081EC087EE0063E45D /* Frameworks */,
+				291914091EC087EE0063E45D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TapIt;
+			productName = TapIt;
+			productReference = 2919140B1EC087EE0063E45D /* TapIt.app */;
+			productType = "com.apple.product-type.application";
+		};
+		291914241EC087EE0063E45D /* TapItTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2919143C1EC087EE0063E45D /* Build configuration list for PBXNativeTarget "TapItTests" */;
+			buildPhases = (
+				291914211EC087EE0063E45D /* Sources */,
+				291914221EC087EE0063E45D /* Frameworks */,
+				291914231EC087EE0063E45D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				291914271EC087EE0063E45D /* PBXTargetDependency */,
+			);
+			name = TapItTests;
+			productName = TapItTests;
+			productReference = 291914251EC087EE0063E45D /* TapItTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2919142F1EC087EE0063E45D /* TapItUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2919143F1EC087EE0063E45D /* Build configuration list for PBXNativeTarget "TapItUITests" */;
+			buildPhases = (
+				2919142C1EC087EE0063E45D /* Sources */,
+				2919142D1EC087EE0063E45D /* Frameworks */,
+				2919142E1EC087EE0063E45D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				291914321EC087EE0063E45D /* PBXTargetDependency */,
+			);
+			name = TapItUITests;
+			productName = TapItUITests;
+			productReference = 291914301EC087EE0063E45D /* TapItUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		291914031EC087EE0063E45D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = RusRazvan;
+				TargetAttributes = {
+					2919140A1EC087EE0063E45D = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = L9NG53WPHY;
+						ProvisioningStyle = Automatic;
+					};
+					291914241EC087EE0063E45D = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = L9NG53WPHY;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2919140A1EC087EE0063E45D;
+					};
+					2919142F1EC087EE0063E45D = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = L9NG53WPHY;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2919140A1EC087EE0063E45D;
+					};
+				};
+			};
+			buildConfigurationList = 291914061EC087EE0063E45D /* Build configuration list for PBXProject "TapIt" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 291914021EC087EE0063E45D;
+			productRefGroup = 2919140C1EC087EE0063E45D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2919140A1EC087EE0063E45D /* TapIt */,
+				291914241EC087EE0063E45D /* TapItTests */,
+				2919142F1EC087EE0063E45D /* TapItUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		291914091EC087EE0063E45D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2919141A1EC087EE0063E45D /* Main.storyboard in Resources */,
+				291914111EC087EE0063E45D /* GameScene.sks in Resources */,
+				2919141C1EC087EE0063E45D /* Assets.xcassets in Resources */,
+				2919141F1EC087EE0063E45D /* LaunchScreen.storyboard in Resources */,
+				291914461EC088690063E45D /* GameplayScene.sks in Resources */,
+				291914131EC087EE0063E45D /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		291914231EC087EE0063E45D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2919142E1EC087EE0063E45D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		291914071EC087EE0063E45D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				291914481EC0887C0063E45D /* GameplayScene.swift in Sources */,
+				2919144B1EC089450063E45D /* Cube.swift in Sources */,
+				291914151EC087EE0063E45D /* GameScene.swift in Sources */,
+				291914171EC087EE0063E45D /* GameViewController.swift in Sources */,
+				2919140F1EC087EE0063E45D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		291914211EC087EE0063E45D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2919142A1EC087EE0063E45D /* TapItTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2919142C1EC087EE0063E45D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				291914351EC087EE0063E45D /* TapItUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		291914271EC087EE0063E45D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2919140A1EC087EE0063E45D /* TapIt */;
+			targetProxy = 291914261EC087EE0063E45D /* PBXContainerItemProxy */;
+		};
+		291914321EC087EE0063E45D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2919140A1EC087EE0063E45D /* TapIt */;
+			targetProxy = 291914311EC087EE0063E45D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		291914181EC087EE0063E45D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				291914191EC087EE0063E45D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2919141D1EC087EE0063E45D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2919141E1EC087EE0063E45D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		291914371EC087EE0063E45D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		291914381EC087EE0063E45D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2919143A1EC087EE0063E45D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L9NG53WPHY;
+				INFOPLIST_FILE = TapIt/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RusRazvan.TapIt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		2919143B1EC087EE0063E45D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L9NG53WPHY;
+				INFOPLIST_FILE = TapIt/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RusRazvan.TapIt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		2919143D1EC087EE0063E45D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = L9NG53WPHY;
+				INFOPLIST_FILE = TapItTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RusRazvan.TapItTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapIt.app/TapIt";
+			};
+			name = Debug;
+		};
+		2919143E1EC087EE0063E45D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = L9NG53WPHY;
+				INFOPLIST_FILE = TapItTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RusRazvan.TapItTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapIt.app/TapIt";
+			};
+			name = Release;
+		};
+		291914401EC087EE0063E45D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = L9NG53WPHY;
+				INFOPLIST_FILE = TapItUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RusRazvan.TapItUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = TapIt;
+			};
+			name = Debug;
+		};
+		291914411EC087EE0063E45D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = L9NG53WPHY;
+				INFOPLIST_FILE = TapItUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RusRazvan.TapItUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = TapIt;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		291914061EC087EE0063E45D /* Build configuration list for PBXProject "TapIt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				291914371EC087EE0063E45D /* Debug */,
+				291914381EC087EE0063E45D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		291914391EC087EE0063E45D /* Build configuration list for PBXNativeTarget "TapIt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2919143A1EC087EE0063E45D /* Debug */,
+				2919143B1EC087EE0063E45D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2919143C1EC087EE0063E45D /* Build configuration list for PBXNativeTarget "TapItTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2919143D1EC087EE0063E45D /* Debug */,
+				2919143E1EC087EE0063E45D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2919143F1EC087EE0063E45D /* Build configuration list for PBXNativeTarget "TapItUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				291914401EC087EE0063E45D /* Debug */,
+				291914411EC087EE0063E45D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 291914031EC087EE0063E45D /* Project object */;
+}
