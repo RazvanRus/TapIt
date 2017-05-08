@@ -25,6 +25,8 @@ class GameplayScene: SKScene {
     func initialize() {
         callCreateCube()
         createLabels()
+        Timer.scheduledTimer(timeInterval: TimeInterval(10), target: self, selector: #selector(GameplayScene.callCreateBonusItems), userInfo: nil, repeats: false)
+
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -33,7 +35,7 @@ class GameplayScene: SKScene {
             self.removeAllActions()
             self.removeAllChildren()
         }
-        if GameManager.instance.noOfLives != noOfLives {
+        if GameManager.instance.noOfLives < noOfLives {
             decrementNoOfLives()
         }
     }
@@ -50,6 +52,16 @@ class GameplayScene: SKScene {
                 cubeCount -= 1
                 incrementScore()
             }
+            if atPoint(touch.location(in: self)).name == "BonusLife" {
+                atPoint(touch.location(in: self)).removeFromParent()
+                cubeCount -= 1
+                incrementNoOfLifes()
+            }
+            if atPoint(touch.location(in: self)).name == "BonusLifeLabel" {
+                atPoint(touch.location(in: self)).parent?.removeFromParent()
+                cubeCount -= 1
+                incrementNoOfLifes()
+            }
         }
     }
     
@@ -64,7 +76,7 @@ class GameplayScene: SKScene {
         var line = (Int(arc4random_uniform(UInt32(3))) * 250) - 250
         var colomn = (Int(arc4random_uniform(UInt32(4))) * 250) - 350
         
-        while atPoint(CGPoint(x: line, y: colomn)).name == "ColorCube" || atPoint(CGPoint(x: line, y: colomn)).name == "CubeLabel" {
+        while isPlaceTaken(line: line, colomn: colomn) {
             line = (Int(arc4random_uniform(UInt32(3))) * 250) - 250
             colomn = (Int(arc4random_uniform(UInt32(4))) * 250) - 350
         }
@@ -85,6 +97,31 @@ class GameplayScene: SKScene {
         } else if gameSpeed > 0.15 {
             gameSpeed -= 0.001 * gameSpeed
         }
+        
+    }
+    
+    func callCreateBonusItems() {
+        if cubeCount < 12 && noOfLives < 3 {
+            createBonusItems()
+        }
+        Timer.scheduledTimer(timeInterval: TimeInterval(10), target: self, selector: #selector(GameplayScene.callCreateBonusItems), userInfo: nil, repeats: false)
+    }
+    
+    func createBonusItems() {
+        var line = (Int(arc4random_uniform(UInt32(3))) * 250) - 250
+        var colomn = (Int(arc4random_uniform(UInt32(4))) * 250) - 350
+        
+        while isPlaceTaken(line: line, colomn: colomn) {
+            line = (Int(arc4random_uniform(UInt32(3))) * 250) - 250
+            colomn = (Int(arc4random_uniform(UInt32(4))) * 250) - 350
+        }
+        
+        
+        let cube = BonusLife()
+        cube.initialize()
+        cube.setPosition(position: CGPoint(x: line, y: colomn))
+        self.addChild(cube.cube)
+        cubeCount += 1
         
     }
     
@@ -113,6 +150,19 @@ class GameplayScene: SKScene {
         noOfLivesLabel.text = "\(noOfLives)"
         
         gameSpeed += 0.20
+        
+    }
+    
+    func incrementNoOfLifes() {
+        GameManager.instance.noOfLives += 1
+        noOfLives = GameManager.instance.noOfLives
+        noOfLivesLabel.text = "\(noOfLives)"
+        
+        gameSpeed += 0.10
+    }
+    
+    func isPlaceTaken(line: Int, colomn: Int) -> Bool {
+        return atPoint(CGPoint(x: line, y: colomn)).name == "ColorCube" || atPoint(CGPoint(x: line, y: colomn)).name == "CubeLabel" || atPoint(CGPoint(x: line, y: colomn)).name == "BonusLife" || atPoint(CGPoint(x: line, y: colomn)).name == "BonusLifeLabel"
     }
     
 }

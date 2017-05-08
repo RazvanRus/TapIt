@@ -21,6 +21,7 @@
 		291914481EC0887C0063E45D /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291914471EC0887C0063E45D /* GameplayScene.swift */; };
 		2919144B1EC089450063E45D /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919144A1EC089450063E45D /* Cube.swift */; };
 		2938C13E1EC0B834001A4F22 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C13D1EC0B834001A4F22 /* GameManager.swift */; };
+		2966A25B1EC0D62E00B36212 /* BonusLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966A25A1EC0D62E00B36212 /* BonusLife.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		291914471EC0887C0063E45D /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayScene.swift; sourceTree = "<group>"; };
 		2919144A1EC089450063E45D /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		2938C13D1EC0B834001A4F22 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		2966A25A1EC0D62E00B36212 /* BonusLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BonusLife.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 		291914431EC088220063E45D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2966A2591EC0D62000B36212 /* BonusItems */,
 				2938C13B1EC0B792001A4F22 /* GameManager */,
 				291914491EC089370063E45D /* Cube */,
 				291914441EC0882D0063E45D /* SceneClass */,
@@ -184,6 +187,14 @@
 				2938C13D1EC0B834001A4F22 /* GameManager.swift */,
 			);
 			name = GameManager;
+			sourceTree = "<group>";
+		};
+		2966A2591EC0D62000B36212 /* BonusItems */ = {
+			isa = PBXGroup;
+			children = (
+				2966A25A1EC0D62E00B36212 /* BonusLife.swift */,
+			);
+			name = BonusItems;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +341,7 @@
 				2938C13E1EC0B834001A4F22 /* GameManager.swift in Sources */,
 				2919144B1EC089450063E45D /* Cube.swift in Sources */,
 				291914151EC087EE0063E45D /* GameScene.swift in Sources */,
+				2966A25B1EC0D62E00B36212 /* BonusLife.swift in Sources */,
 				291914171EC087EE0063E45D /* GameViewController.swift in Sources */,
 				2919140F1EC087EE0063E45D /* AppDelegate.swift in Sources */,
 			);
