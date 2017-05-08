@@ -13,7 +13,10 @@ class GameplayScene: SKScene {
     var gameSpeed = 1.0
     var cubeCount = 0
     var score = 0
+    var noOfLives = GameManager.instance.noOfLives
     var scoreLabel = SKLabelNode()
+    var noOfLivesLabel = SKLabelNode()
+
 
     override func didMove(to view: SKView) {
         initialize()
@@ -21,7 +24,18 @@ class GameplayScene: SKScene {
     
     func initialize() {
         callCreateCube()
-        createScoreLabel()
+        createLabels()
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if GameManager.instance.noOfLives < 1 {
+            // end game
+            self.removeAllActions()
+            self.removeAllChildren()
+        }
+        if GameManager.instance.noOfLives != noOfLives {
+            decrementNoOfLives()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -79,15 +93,27 @@ class GameplayScene: SKScene {
         scoreLabel.text = "\(score)"
     }
     
-    func createScoreLabel() {
+    func createLabels() {
         scoreLabel.zPosition = 4
-        scoreLabel.position = CGPoint(x: 0, y: 560)
+        scoreLabel.position = CGPoint(x: -50, y: 560)
         scoreLabel.fontSize = 90
         scoreLabel.text = "\(score)"
         self.addChild(scoreLabel)
+        
+        noOfLivesLabel.zPosition = 4
+        noOfLivesLabel.position = CGPoint(x: 250, y: 560)
+        noOfLivesLabel.fontSize = 70
+        noOfLivesLabel.fontColor = SKColor.red
+        noOfLivesLabel.text = "\(GameManager.instance.noOfLives)"
+        self.addChild(noOfLivesLabel)
     }
 
-    
+    func decrementNoOfLives() {
+        noOfLives = GameManager.instance.noOfLives
+        noOfLivesLabel.text = "\(noOfLives)"
+        
+        gameSpeed += 0.20
+    }
     
 }
 
