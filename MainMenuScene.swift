@@ -15,7 +15,6 @@ class MainMenuScene: SKScene {
     }
     
     func initialize() {
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -37,13 +36,15 @@ class MainMenuScene: SKScene {
     func displayHighscore() {
         let scoreLabel = SKLabelNode()
         scoreLabel.name = "ScoreLabel"
+        scoreLabel.zPosition = 5
         scoreLabel.position = CGPoint(x: 0, y: 200)
         scoreLabel.fontSize = 120
         scoreLabel.fontColor = SKColor.white
-        scoreLabel.alpha = 0.8
+        scoreLabel.alpha = 0.95
         scoreLabel.text = "\(GameManager.instance.getHighscore())"
         self.addChild(scoreLabel)
     }
+    
     
     
     

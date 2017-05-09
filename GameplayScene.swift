@@ -40,10 +40,14 @@ class GameplayScene: SKScene {
         createPauseButton()
     }
     
+    func endGame() {
+        isEndGame = true
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         if GameManager.instance.noOfLives < 1 {
             // end game
-            isEndGame = true
+            Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(GameplayScene.endGame), userInfo: nil, repeats: false)
             self.scene?.isPaused = true
             timer.invalidate()
             isGamePaused = true
@@ -189,7 +193,7 @@ class GameplayScene: SKScene {
     }
     
     func createResumeButton() {
-        resumeButton = SKSpriteNode(imageNamed: "play")
+        resumeButton = SKSpriteNode(imageNamed: "Resume")
         resumeButton.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         resumeButton.zPosition = 4
         resumeButton.name = "Resume"
@@ -264,7 +268,7 @@ class GameplayScene: SKScene {
         
         let endGameLabel = SKLabelNode()
         endGameLabel.name = "EndGamePannelLabel"
-        endGameLabel.position = CGPoint(x: 0, y: 250)
+        endGameLabel.position = CGPoint(x: 0, y: 50)
         endGameLabel.fontSize = 120
         endGameLabel.fontColor = SKColor.white
         endGameLabel.alpha = 0.8
@@ -273,7 +277,7 @@ class GameplayScene: SKScene {
         
         let endGameScoreLabel = SKLabelNode()
         endGameScoreLabel.name = "EndGameScoreLabel"
-        endGameScoreLabel.position = CGPoint(x: 0, y: 500)
+        endGameScoreLabel.position = CGPoint(x: 0, y: 300)
         endGameScoreLabel.fontSize = 120
         endGameScoreLabel.fontColor = SKColor.white
         endGameScoreLabel.alpha = 0.8
@@ -282,7 +286,7 @@ class GameplayScene: SKScene {
         
         let endGameQuitLabel = SKLabelNode()
         endGameQuitLabel.name = "EndGamePannelQuitLabel"
-        endGameQuitLabel.position = CGPoint(x: 0, y: 0)
+        endGameQuitLabel.position = CGPoint(x: 0, y: -200)
         endGameQuitLabel.fontSize = 90
         endGameQuitLabel.fontColor = SKColor.white
         endGameQuitLabel.alpha = 0.6
