@@ -10,47 +10,48 @@ import SpriteKit
 
 class BonusLife {
     
-    var cube = SKSpriteNode()
-    var cubeLabel = SKLabelNode()
+    var bonusLife = SKSpriteNode()
+    var bonusLifeLabel = SKLabelNode()
     
     func initialize() {
         createCube()
+        createAction()
     }
     
     func createCube() {
-        cube = SKSpriteNode()
-        cube.name = "BonusLife"
-        cube.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        cube.size = CGSize(width: 250, height: 250)
-        cube.zPosition = 2
-        cube.color = SKColor.blue
+        bonusLife = SKSpriteNode()
+        bonusLife.name = "BonusLife"
+        bonusLife.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        bonusLife.size = CGSize(width: 250, height: 250)
+        bonusLife.zPosition = 2
+        bonusLife.color = SKColor.blue
         
-        cubeLabel = SKLabelNode()
-        cubeLabel.name = "BonusLifeLabel"
-        cubeLabel.position = CGPoint(x: 0, y: 0)
-        cubeLabel.zPosition = 3
-        cubeLabel.color = SKColor.black
-        cubeLabel.verticalAlignmentMode = .center
-        cubeLabel.horizontalAlignmentMode = .center
-        cubeLabel.fontSize = 130
-        cubeLabel.text = "<#"
+        bonusLifeLabel = SKLabelNode()
+        bonusLifeLabel.name = "BonusLifeLabel"
+        bonusLifeLabel.position = CGPoint(x: 0, y: 0)
+        bonusLifeLabel.zPosition = 3
+        bonusLifeLabel.color = SKColor.black
+        bonusLifeLabel.verticalAlignmentMode = .center
+        bonusLifeLabel.horizontalAlignmentMode = .center
+        bonusLifeLabel.fontSize = 130
+        bonusLifeLabel.text = "<#"
         
-        cube.addChild(cubeLabel)
-        
-        let resize = SKAction.scale(to: 0.80, duration: TimeInterval(5))
-
-        let remove = SKAction.removeFromParent()
-        
-        let sequence = SKAction.sequence([resize,remove])
-        
-        cube.run(sequence)
+        bonusLife.addChild(bonusLifeLabel)
     }
     
     func setPosition(position: CGPoint) {
-        cube.position = position
+        bonusLife.position = position
     }
     
-    
+    func createAction() {
+        let resize = SKAction.scale(to: 0.80, duration: TimeInterval(5))
+        let remove = SKAction.removeFromParent()
+        let die = SKAction.run({() in GameManager.instance.noOfLives += 1})
+
+        let sequence = SKAction.sequence([resize,remove,die])
+        
+        bonusLife.run(sequence)
+    }
     
     
 }

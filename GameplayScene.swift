@@ -13,10 +13,16 @@ class GameplayScene: SKScene {
     var gameSpeed = 1.0
     var cubeCount = 0
     var score = 0
-    var noOfLives = GameManager.instance.noOfLives
+    var noOfLifes = GameManager.instance.noOfLives
+    
     var scoreLabel = SKLabelNode()
-    var noOfLivesLabel = SKLabelNode()
-
+    var noOfLifesLabel = SKLabelNode()
+    
+    var timer = Timer()
+    var isGamePaused = false
+    
+    var pauseButton = SKSpriteNode()
+    var resumeButton = SKSpriteNode()
 
     override func didMove(to view: SKView) {
         initialize()
@@ -25,8 +31,7 @@ class GameplayScene: SKScene {
     func initialize() {
         callCreateCube()
         createLabels()
-        Timer.scheduledTimer(timeInterval: TimeInterval(10), target: self, selector: #selector(GameplayScene.callCreateBonusItems), userInfo: nil, repeats: false)
-
+        createPauseButton()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -35,41 +40,56 @@ class GameplayScene: SKScene {
             self.removeAllActions()
             self.removeAllChildren()
         }
-        if GameManager.instance.noOfLives < noOfLives {
+        if GameManager.instance.noOfLives < noOfLifes {
             decrementNoOfLives()
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            if atPoint(touch.location(in: self)).name == "ColorCube" {
-                atPoint(touch.location(in: self)).removeFromParent()
-                cubeCount -= 1
-                incrementScore()
+            if !isGamePaused {
+                if atPoint(touch.location(in: self)).name == nil {
+                    if cubeCount < 11 {
+                        createCube()
+                    }
+                }
+                if atPoint(touch.location(in: self)).name == "ColorCube" {
+                    atPoint(touch.location(in: self)).removeFromParent()
+                    cubeCount -= 1
+                    incrementScore()
+                }
+                if atPoint(touch.location(in: self)).name == "CubeLabel" {
+                    atPoint(touch.location(in: self)).parent?.removeFromParent()
+                    cubeCount -= 1
+                    incrementScore()
+                }
             }
-            if atPoint(touch.location(in: self)).name == "CubeLabel" {
-                atPoint(touch.location(in: self)).parent?.removeFromParent()
-                cubeCount -= 1
-                incrementScore()
+            
+            if atPoint(touch.location(in: self)).name == "Pause" {
+                // create pause pannel
+                pauseButton.removeFromParent()
+                createResumeButton()
+                self.scene?.isPaused = true
+                timer.invalidate()
+                isGamePaused = true
             }
-            if atPoint(touch.location(in: self)).name == "BonusLife" {
-                atPoint(touch.location(in: self)).removeFromParent()
-                cubeCount -= 1
-                incrementNoOfLifes()
-            }
-            if atPoint(touch.location(in: self)).name == "BonusLifeLabel" {
-                atPoint(touch.location(in: self)).parent?.removeFromParent()
-                cubeCount -= 1
-                incrementNoOfLifes()
+            if atPoint(touch.location(in: self)).name == "Resume" {
+                self.scene?.isPaused = false
+                callCreateCube()
+                isGamePaused = false
+                resumeButton.removeFromParent()
+                createPauseButton()
             }
         }
     }
     
+    
+    // creating cubes
     func callCreateCube() {
         if cubeCount < 12 {
             createCube()
         }
-        Timer.scheduledTimer(timeInterval: TimeInterval(gameSpeed), target: self, selector: #selector(GameplayScene.callCreateCube), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(gameSpeed), target: self, selector: #selector(GameplayScene.callCreateCube), userInfo: nil, repeats: false)
     }
     
     func createCube() {
@@ -100,69 +120,71 @@ class GameplayScene: SKScene {
         
     }
     
-    func callCreateBonusItems() {
-        if cubeCount < 12 && noOfLives < 3 {
-            createBonusItems()
-        }
-        Timer.scheduledTimer(timeInterval: TimeInterval(10), target: self, selector: #selector(GameplayScene.callCreateBonusItems), userInfo: nil, repeats: false)
-    }
+
     
-    func createBonusItems() {
-        var line = (Int(arc4random_uniform(UInt32(3))) * 250) - 250
-        var colomn = (Int(arc4random_uniform(UInt32(4))) * 250) - 350
-        
-        while isPlaceTaken(line: line, colomn: colomn) {
-            line = (Int(arc4random_uniform(UInt32(3))) * 250) - 250
-            colomn = (Int(arc4random_uniform(UInt32(4))) * 250) - 350
-        }
-        
-        
-        let cube = BonusLife()
-        cube.initialize()
-        cube.setPosition(position: CGPoint(x: line, y: colomn))
-        self.addChild(cube.cube)
-        cubeCount += 1
-        
-    }
     
+    // incrementing the score
     func incrementScore() {
         score += 1
         scoreLabel.text = "\(score)"
     }
     
+    // creating score and lifes label
     func createLabels() {
         scoreLabel.zPosition = 4
-        scoreLabel.position = CGPoint(x: -50, y: 560)
+        scoreLabel.position = CGPoint(x: 0, y: 560)
         scoreLabel.fontSize = 90
         scoreLabel.text = "\(score)"
         self.addChild(scoreLabel)
         
-        noOfLivesLabel.zPosition = 4
-        noOfLivesLabel.position = CGPoint(x: 250, y: 560)
-        noOfLivesLabel.fontSize = 70
-        noOfLivesLabel.fontColor = SKColor.red
-        noOfLivesLabel.text = "\(GameManager.instance.noOfLives)"
-        self.addChild(noOfLivesLabel)
+        noOfLifesLabel.zPosition = 4
+        noOfLifesLabel.position = CGPoint(x: -300, y: 560)
+        noOfLifesLabel.fontSize = 70
+        noOfLifesLabel.fontColor = SKColor.red
+        noOfLifesLabel.text = "\(GameManager.instance.noOfLives)"
+        self.addChild(noOfLifesLabel)
+    }
+    
+    func createPauseButton() {
+        pauseButton = SKSpriteNode(imageNamed: "Pause")
+        pauseButton.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        pauseButton.zPosition = 4
+        pauseButton.name = "Pause"
+        pauseButton.alpha = 0.5
+        pauseButton.setScale(0.6)
+        pauseButton.position = CGPoint(x: 310, y: 590)
+        self.addChild(pauseButton)
+    }
+    
+    func createResumeButton() {
+        resumeButton = SKSpriteNode(imageNamed: "play")
+        resumeButton.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        resumeButton.zPosition = 4
+        resumeButton.name = "Resume"
+        resumeButton.alpha = 0.5
+        resumeButton.setScale(0.8)
+        resumeButton.position = CGPoint(x: 220, y: 590)
+        self.addChild(resumeButton)
     }
 
+    // decrementing numbers of lifes
     func decrementNoOfLives() {
-        noOfLives = GameManager.instance.noOfLives
-        noOfLivesLabel.text = "\(noOfLives)"
+        noOfLifes = GameManager.instance.noOfLives
+        noOfLifesLabel.text = "\(noOfLifes)"
         
         gameSpeed += 0.20
         
     }
+
     
-    func incrementNoOfLifes() {
-        GameManager.instance.noOfLives += 1
-        noOfLives = GameManager.instance.noOfLives
-        noOfLivesLabel.text = "\(noOfLives)"
-        
-        gameSpeed += 0.10
-    }
     
+    // chacking if the place is empty
     func isPlaceTaken(line: Int, colomn: Int) -> Bool {
         return atPoint(CGPoint(x: line, y: colomn)).name == "ColorCube" || atPoint(CGPoint(x: line, y: colomn)).name == "CubeLabel" || atPoint(CGPoint(x: line, y: colomn)).name == "BonusLife" || atPoint(CGPoint(x: line, y: colomn)).name == "BonusLifeLabel"
+    }
+    
+    func randomBetweenNumbers(firstNumber: CGFloat,secoundeNoumber: CGFloat) -> CGFloat {
+        return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(firstNumber - secoundeNoumber) + min(firstNumber, secoundeNoumber)
     }
     
 }
