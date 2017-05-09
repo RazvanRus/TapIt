@@ -20,15 +20,21 @@ class GameplayScene: SKScene {
     
     var timer = Timer()
     var isGamePaused = false
+    var isEndGame = false
     
     var pauseButton = SKSpriteNode()
     var resumeButton = SKSpriteNode()
+    
+    var pausePannel = SKSpriteNode()
+    var endGamePannel = SKSpriteNode()
 
     override func didMove(to view: SKView) {
         initialize()
     }
     
     func initialize() {
+        GameManager.instance.resetLifes()
+        noOfLifes = GameManager.instance.noOfLives
         callCreateCube()
         createLabels()
         createPauseButton()
@@ -37,8 +43,11 @@ class GameplayScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         if GameManager.instance.noOfLives < 1 {
             // end game
-            self.removeAllActions()
-            self.removeAllChildren()
+            isEndGame = true
+            self.scene?.isPaused = true
+            timer.invalidate()
+            isGamePaused = true
+            createEndGamePannel()
         }
         if GameManager.instance.noOfLives < noOfLifes {
             decrementNoOfLives()
@@ -47,38 +56,60 @@ class GameplayScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
+            if isEndGame {
+                let mainMenu = MainMenuScene(fileNamed: "MainMenuScene")
+                mainMenu?.scaleMode = .aspectFill
+                self.view?.presentScene(mainMenu!, transition: SKTransition.crossFade(withDuration: TimeInterval(0.5)))
+            }
+            let location = touch.location(in: self)
             if !isGamePaused {
-                if atPoint(touch.location(in: self)).name == nil {
+                if atPoint(location).name == nil {
                     if cubeCount < 11 {
                         createCube()
                     }
                 }
-                if atPoint(touch.location(in: self)).name == "ColorCube" {
-                    atPoint(touch.location(in: self)).removeFromParent()
+                if atPoint(location).name == "ColorCube" {
+                    atPoint(location).removeFromParent()
                     cubeCount -= 1
                     incrementScore()
                 }
-                if atPoint(touch.location(in: self)).name == "CubeLabel" {
-                    atPoint(touch.location(in: self)).parent?.removeFromParent()
+                if atPoint(location).name == "CubeLabel" {
+                    atPoint(location).parent?.removeFromParent()
                     cubeCount -= 1
                     incrementScore()
                 }
             }
+//            if atPoint(location).name == "Replay" {
+//                let scene = GameplayScene(fileNamed: "GameplayScene")
+//                    // Set the scale mode to scale to fit the window
+//                scene?.scaleMode = .aspectFill
+//                    
+//                    // Present the scene
+//                view?.presentScene(scene)
+//            }
+//            if atPoint(location).name == "Quit" {
+//                let mainMenu = GameplayScene(fileNamed: "GameplayScene")
+//                mainMenu?.scaleMode = .aspectFill
+//                self.view?.presentScene(mainMenu!, transition: SKTransition.crossFade(withDuration: TimeInterval(0.5)))
+//            }
             
-            if atPoint(touch.location(in: self)).name == "Pause" {
+            
+            if atPoint(location).name == "Pause" {
                 // create pause pannel
                 pauseButton.removeFromParent()
                 createResumeButton()
                 self.scene?.isPaused = true
                 timer.invalidate()
                 isGamePaused = true
+                createPausePannel()
             }
-            if atPoint(touch.location(in: self)).name == "Resume" {
+            if atPoint(location).name == "Resume" {
                 self.scene?.isPaused = false
                 callCreateCube()
                 isGamePaused = false
                 resumeButton.removeFromParent()
                 createPauseButton()
+                pausePannel.removeFromParent()
             }
         }
     }
@@ -86,7 +117,7 @@ class GameplayScene: SKScene {
     
     // creating cubes
     func callCreateCube() {
-        if cubeCount < 12 {
+        if cubeCount < 12 && !isGamePaused{
             createCube()
         }
         timer = Timer.scheduledTimer(timeInterval: TimeInterval(gameSpeed), target: self, selector: #selector(GameplayScene.callCreateCube), userInfo: nil, repeats: false)
@@ -95,6 +126,7 @@ class GameplayScene: SKScene {
     func createCube() {
         var line = (Int(arc4random_uniform(UInt32(3))) * 250) - 250
         var colomn = (Int(arc4random_uniform(UInt32(4))) * 250) - 350
+        
         
         while isPlaceTaken(line: line, colomn: colomn) {
             line = (Int(arc4random_uniform(UInt32(3))) * 250) - 250
@@ -180,12 +212,88 @@ class GameplayScene: SKScene {
     
     // chacking if the place is empty
     func isPlaceTaken(line: Int, colomn: Int) -> Bool {
-        return atPoint(CGPoint(x: line, y: colomn)).name == "ColorCube" || atPoint(CGPoint(x: line, y: colomn)).name == "CubeLabel" || atPoint(CGPoint(x: line, y: colomn)).name == "BonusLife" || atPoint(CGPoint(x: line, y: colomn)).name == "BonusLifeLabel"
+
+        return !(atPoint(CGPoint(x: line, y: colomn)).name == nil)
+        
+        //        return atPoint(CGPoint(x: line, y: colomn)).name == "ColorCube" || atPoint(CGPoint(x: line, y: colomn)).name == "CubeLabel" || atPoint(CGPoint(x: line, y: colomn)).name == "BonusLife" || atPoint(CGPoint(x: line, y: colomn)).name == "BonusLifeLabel"
     }
     
     func randomBetweenNumbers(firstNumber: CGFloat,secoundeNoumber: CGFloat) -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(firstNumber - secoundeNoumber) + min(firstNumber, secoundeNoumber)
     }
+    
+    func createPausePannel() {
+        pausePannel = SKSpriteNode()
+        pausePannel.name = "PausePannel"
+        pausePannel.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        pausePannel.position = CGPoint(x: 0, y: 28)
+        pausePannel.size = CGSize(width: 750, height: 1010)
+        pausePannel.zPosition = 10
+        pausePannel.color = SKColor.black
+        pausePannel.alpha = 0.75
+        
+        let pauseLabel = SKLabelNode()
+        pauseLabel.name = "PausePannelLabel"
+        pauseLabel.position = CGPoint(x: 0, y: 0)
+        pauseLabel.fontSize = 200
+        pauseLabel.fontColor = SKColor.white
+        pauseLabel.alpha = 0.8
+        pauseLabel.text = "Paused"
+        
+        pausePannel.addChild(pauseLabel)
+        
+        self.addChild(pausePannel)
+    }
+    
+    func createEndGamePannel() {
+        
+        if GameManager.instance.getHighscore() < score {
+            GameManager.instance.setHighscore(highscore: score)
+        }
+        
+        endGamePannel = SKSpriteNode()
+        
+        endGamePannel.name = "EndGamePannel"
+        endGamePannel.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        endGamePannel.position = CGPoint(x: 0, y: 0)
+        endGamePannel.size = CGSize(width: 750, height: 1334)
+        endGamePannel.zPosition = 10
+        endGamePannel.color = SKColor.black
+        endGamePannel.alpha = 0.95
+        
+        
+        let endGameLabel = SKLabelNode()
+        endGameLabel.name = "EndGamePannelLabel"
+        endGameLabel.position = CGPoint(x: 0, y: 250)
+        endGameLabel.fontSize = 120
+        endGameLabel.fontColor = SKColor.white
+        endGameLabel.alpha = 0.8
+        endGameLabel.text = "Game Over"
+        endGamePannel.addChild(endGameLabel)
+        
+        let endGameScoreLabel = SKLabelNode()
+        endGameScoreLabel.name = "EndGameScoreLabel"
+        endGameScoreLabel.position = CGPoint(x: 0, y: 500)
+        endGameScoreLabel.fontSize = 120
+        endGameScoreLabel.fontColor = SKColor.white
+        endGameScoreLabel.alpha = 0.8
+        endGameScoreLabel.text = "\(score)"
+        endGamePannel.addChild(endGameScoreLabel)
+        
+        let endGameQuitLabel = SKLabelNode()
+        endGameQuitLabel.name = "EndGamePannelQuitLabel"
+        endGameQuitLabel.position = CGPoint(x: 0, y: 0)
+        endGameQuitLabel.fontSize = 90
+        endGameQuitLabel.fontColor = SKColor.white
+        endGameQuitLabel.alpha = 0.6
+        endGameQuitLabel.text = "Tap to quit"
+        endGamePannel.addChild(endGameQuitLabel)
+        
+        self.addChild(endGamePannel)
+    }
+    
+    
+    
     
 }
 

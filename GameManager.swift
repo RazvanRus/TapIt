@@ -15,6 +15,10 @@ class GameManager {
     static let instance = GameManager()
     private init() {}
     
+    func resetLifes() {
+        noOfLives = 3
+    }
+    
     func setHighscore(highscore: Int) {
         UserDefaults.standard.set(highscore, forKey: "Highscore")
     }
