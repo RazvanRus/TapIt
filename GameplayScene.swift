@@ -40,7 +40,7 @@ class GameplayScene: SKScene {
         createPauseButton()
     }
     
-    func endGame() {
+    @objc func endGame() {
         isEndGame = true
     }
     
@@ -73,14 +73,14 @@ class GameplayScene: SKScene {
                     }
                 }
                 if atPoint(location).name == "ColorCube" {
+                    incrementScore(amount: (atPoint(location) as! Cube).getPoints())
                     atPoint(location).removeFromParent()
                     cubeCount -= 1
-                    incrementScore()
                 }
                 if atPoint(location).name == "CubeLabel" {
+                    incrementScore(amount: (atPoint(location).parent as! Cube).getPoints())
                     atPoint(location).parent?.removeFromParent()
                     cubeCount -= 1
-                    incrementScore()
                 }
             }
 //            if atPoint(location).name == "Replay" {
@@ -120,7 +120,7 @@ class GameplayScene: SKScene {
     
     
     // creating cubes
-    func callCreateCube() {
+    @objc func callCreateCube() {
         if cubeCount < 12 && !isGamePaused{
             createCube()
         }
@@ -141,7 +141,7 @@ class GameplayScene: SKScene {
         let cube = Cube()
         cube.initialize()
         cube.setPosition(position: CGPoint(x: line, y: colomn))
-        self.addChild(cube.cube)
+        self.addChild(cube)
         cubeCount += 1
         
         if gameSpeed > 0.3 {
@@ -160,8 +160,8 @@ class GameplayScene: SKScene {
     
     
     // incrementing the score
-    func incrementScore() {
-        score += 1
+    func incrementScore(amount : Int) {
+        score += amount
         scoreLabel.text = "\(score)"
     }
     

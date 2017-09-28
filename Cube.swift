@@ -8,9 +8,8 @@
 
 import SpriteKit
 
-class Cube {
+class Cube : SKSpriteNode{
     
-    var cube = SKSpriteNode()
     var cubeLabel = SKLabelNode()
     
     func initialize() {
@@ -19,12 +18,11 @@ class Cube {
     }
     
     func createCube() {
-        cube = SKSpriteNode()
-        cube.name = "ColorCube"
-        cube.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        cube.size = CGSize(width: 250, height: 250)
-        cube.zPosition = 2
-        cube.color = SKColor.green
+        self.name = "ColorCube"
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.size = CGSize(width: 250, height: 250)
+        self.zPosition = 3
+        self.color = SKColor.green
         
         cubeLabel = SKLabelNode()
         cubeLabel.name = "CubeLabel"
@@ -36,11 +34,11 @@ class Cube {
         cubeLabel.fontSize = 130
         cubeLabel.text = "3"
         
-        cube.addChild(cubeLabel)
+        self.addChild(cubeLabel)
     }
     
     func setPosition(position: CGPoint) {
-        cube.position = position
+        self.position = position
     }
     
     // create and run action
@@ -49,8 +47,8 @@ class Cube {
         let resize2 = SKAction.scale(to: 0.80, duration: TimeInterval(1))
         let resize3 = SKAction.scale(to: 0.70, duration: TimeInterval(1))
         
-        let color1 = SKAction.run({() in self.cube.color = SKColor.yellow})
-        let color2 = SKAction.run({() in self.cube.color = SKColor.red})
+        let color1 = SKAction.run({() in self.color = SKColor.yellow})
+        let color2 = SKAction.run({() in self.color = SKColor.red})
         
         let countDowun1 = SKAction.run({() in self.cubeLabel.text = "2"})
         let countDowun2 = SKAction.run({() in self.cubeLabel.text = "1"})
@@ -59,9 +57,13 @@ class Cube {
         
         let sequence = SKAction.sequence([resize1,color1,countDowun1,resize2,color2,countDowun2,resize3,remove,die])
         
-        cube.run(sequence)
+        self.run(sequence)
     }
     
+    
+    func getPoints() -> Int {
+        return Int(cubeLabel.text!)!
+    }
     
 }
 
